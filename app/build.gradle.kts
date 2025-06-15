@@ -41,6 +41,24 @@ android {
 
 dependencies {
 
+    //Room
+    implementation(libs.bundles.room)
+    implementation(libs.ksp.gradlePlugin)
+    implementation(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.ktx)
+
+    //Coil
+    implementation(libs.coil.compose)
+
+    //Ktor
+    implementation(libs.bundles.ktor)
+
+    //Koin
+    implementation(libs.bundles.koin)
+
+    //Extended icons
+    implementation(libs.androidx.material.icons.extended)
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
