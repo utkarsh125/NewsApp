@@ -1,21 +1,25 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
-    alias(libs.plugins.jetbrains.kotlin.compose)
+    alias(libs.plugins.jetbrainsKotlinSerialization)
+    alias(libs.plugins.ksp)
 }
 
 android {
-    namespace = "com.example.newsapp"
-    compileSdk = 35
+    namespace = "com.ag_apps.newsapp"
+    compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.newsapp"
-        minSdk = 29
-        targetSdk = 35
+        applicationId = "com.ag_apps.newsapp"
+        minSdk = 26
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary = true
+        }
     }
 
     buildTypes {
@@ -28,36 +32,26 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "17"
     }
     buildFeatures {
         compose = true
     }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.9"
+    }
+    packaging {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
+    }
 }
 
 dependencies {
-
-    //Room
-    implementation(libs.bundles.room)
-    implementation(libs.ksp.gradlePlugin)
-    implementation(libs.androidx.room.compiler)
-    implementation(libs.androidx.room.ktx)
-
-    //Coil
-    implementation(libs.coil.compose)
-
-    //Ktor
-    implementation(libs.bundles.ktor)
-
-    //Koin
-    implementation(libs.bundles.koin)
-
-    //Extended icons
-    implementation(libs.androidx.material.icons.extended)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -74,4 +68,26 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    // Room
+    implementation(libs.bundles.room)
+    annotationProcessor(libs.androidx.room.compiler)
+    ksp(libs.androidx.room.compiler)
+    implementation(libs.ksp.gradlePlugin)
+
+    // Coil
+    implementation(libs.coil.compose)
+
+    // Ktor
+    implementation(libs.bundles.ktor)
+
+    // Koin
+    implementation(libs.bundles.koin)
+
+    // Extended Icons
+    implementation(libs.androidx.material.icons.extended)
+
+    // Navigation
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.kotlinx.serialization.json)
 }
