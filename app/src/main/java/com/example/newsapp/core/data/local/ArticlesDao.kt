@@ -19,6 +19,7 @@ interface ArticlesDao {
 
     @Query("DELETE FROM articleentity")
     suspend fun clearArticleList()
+    fun clearDatabase()
 
 
 }
